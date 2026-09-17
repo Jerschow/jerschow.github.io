@@ -1,0 +1,703 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f4f6fa;
+  --foreground: #111827;
+  --paper: #ffffff;
+  --paper-subtle: #f9fafc;
+  --muted: #5f6876;
+  --line: #d9dee8;
+  --line-strong: #aeb6c5;
+  --accent: #1748d3;
+  --accent-dark: #0c2d91;
+  --accent-soft: #e7edff;
+  --gold: #ffe273;
+  --green: #d9f48b;
+  --gray-cell: #e7e9ee;
+  --radius: 0.25rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background:
+    linear-gradient(90deg, transparent calc(50% - 0.5px), rgba(17, 24, 39, 0.035) 50%, transparent calc(50% + 0.5px)),
+    var(--background);
+  color: var(--foreground);
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
+a:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
+
+::selection {
+  background: var(--accent);
+  color: white;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 100;
+  top: 0.75rem;
+  left: 0.75rem;
+  padding: 0.6rem 0.9rem;
+  transform: translateY(-200%);
+  background: var(--foreground);
+  color: white;
+  font-weight: 700;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.site-header {
+  position: sticky;
+  z-index: 30;
+  top: 0;
+  border-bottom: 1px solid rgba(174, 182, 197, 0.8);
+  background: rgba(244, 246, 250, 0.94);
+  backdrop-filter: blur(16px);
+}
+
+.header-inner,
+.page,
+.site-footer-inner {
+  width: min(100% - 3rem, 72rem);
+  margin-inline: auto;
+}
+
+.header-inner {
+  display: flex;
+  min-height: 4.75rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.wordmark {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--foreground);
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.monogram {
+  display: grid;
+  width: 2.25rem;
+  height: 2.25rem;
+  place-items: center;
+  border: 1px solid var(--foreground);
+  background: var(--paper);
+  font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  font-size: 0.92rem;
+}
+
+.site-nav {
+  min-width: 0;
+}
+
+.nav-list {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  gap: clamp(0.85rem, 2.1vw, 1.6rem);
+  list-style: none;
+  white-space: nowrap;
+}
+
+.nav-link {
+  position: relative;
+  display: block;
+  padding-block: 1rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.nav-link:hover,
+.nav-link[aria-current="page"] {
+  color: var(--foreground);
+}
+
+.nav-link[aria-current="page"]::after {
+  position: absolute;
+  right: 0;
+  bottom: 0.65rem;
+  left: 0;
+  height: 2px;
+  background: var(--accent);
+  content: "";
+}
+
+.page {
+  min-height: calc(100vh - 10rem);
+  padding-block: clamp(3rem, 7vw, 6.5rem);
+}
+
+.eyebrow,
+.section-label,
+.page-index,
+.document-meta,
+.figure-caption,
+.microcopy,
+.table-caption {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.eyebrow,
+.section-label,
+.page-index {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.home-hero {
+  display: grid;
+  padding-bottom: clamp(3rem, 7vw, 6rem);
+  border-bottom: 1px solid var(--line-strong);
+  gap: 2.5rem;
+  grid-template-columns: minmax(0, 1.65fr) minmax(15rem, 0.7fr);
+}
+
+.home-title {
+  max-width: 11ch;
+  margin: 1rem 0 0;
+  font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  font-size: clamp(3.4rem, 7.8vw, 7.2rem);
+  font-weight: 500;
+  letter-spacing: -0.065em;
+  line-height: 0.88;
+}
+
+.hero-summary {
+  align-self: end;
+  padding: 1.25rem 0 0 1.5rem;
+  border-left: 2px solid var(--accent);
+}
+
+.hero-summary p {
+  margin: 0;
+  color: #303846;
+  font-size: clamp(1rem, 1.5vw, 1.18rem);
+  line-height: 1.65;
+}
+
+.about-grid {
+  display: grid;
+  padding-block: clamp(3rem, 7vw, 6rem);
+  gap: clamp(2.5rem, 7vw, 6rem);
+  grid-template-columns: minmax(0, 1.05fr) minmax(19rem, 0.95fr);
+}
+
+.copy-column {
+  max-width: 42rem;
+}
+
+.copy-column h2,
+.page-title {
+  margin: 0;
+  font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.045em;
+}
+
+.copy-column h2 {
+  margin-top: 0.65rem;
+  font-size: clamp(2rem, 4vw, 3.75rem);
+  line-height: 1;
+}
+
+.copy-column p {
+  margin: 1.55rem 0 0;
+  color: #384150;
+  font-size: 1.04rem;
+}
+
+.text-link {
+  color: var(--accent-dark);
+  font-weight: 650;
+}
+
+.profile-figure {
+  position: relative;
+  margin: 0;
+  align-self: start;
+}
+
+.profile-figure::before {
+  position: absolute;
+  z-index: -1;
+  top: 1rem;
+  right: -1rem;
+  bottom: -1rem;
+  left: 1rem;
+  background: var(--accent);
+  content: "";
+}
+
+.profile-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--foreground);
+  background: #dbe9f5;
+  object-fit: cover;
+  object-position: 50% 55%;
+}
+
+.figure-caption {
+  display: flex;
+  margin-top: 1.35rem;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--muted);
+  font-size: 0.76rem;
+  line-height: 1.45;
+}
+
+.leisure-block {
+  padding-top: clamp(3rem, 6vw, 5rem);
+  border-top: 1px solid var(--line-strong);
+}
+
+.leisure-grid {
+  display: grid;
+  margin-top: 1.2rem;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.leisure-item {
+  min-height: 9.5rem;
+  padding: 1.5rem;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.62);
+}
+
+.leisure-item h3 {
+  margin: 0;
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.leisure-item p {
+  margin: 0.7rem 0 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.65;
+}
+
+.page-header {
+  display: grid;
+  padding-bottom: clamp(2.6rem, 6vw, 5rem);
+  border-bottom: 1px solid var(--line-strong);
+  gap: 1.5rem 3rem;
+  grid-template-columns: 7rem minmax(0, 1fr);
+}
+
+.page-title {
+  font-size: clamp(3.2rem, 7vw, 6.8rem);
+  line-height: 0.92;
+}
+
+.page-lede {
+  max-width: 42rem;
+  margin: 1.4rem 0 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.content-section {
+  padding-top: clamp(2.75rem, 6vw, 5rem);
+}
+
+.document-list {
+  margin: 1.25rem 0 0;
+  padding: 0;
+  border-top: 1px solid var(--line-strong);
+  list-style: none;
+}
+
+.document-row {
+  display: grid;
+  min-height: 8.5rem;
+  padding-block: 1.5rem;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  gap: 1rem 2rem;
+  grid-template-columns: 9rem minmax(0, 1fr) auto;
+}
+
+.document-meta {
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.document-title {
+  margin: 0;
+  font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  font-size: clamp(1.35rem, 2.4vw, 2rem);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.document-note {
+  margin: 0.55rem 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.document-action,
+.button-link {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--foreground);
+  background: var(--paper);
+  color: var(--foreground);
+  font-size: 0.82rem;
+  font-weight: 750;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.document-action {
+  min-width: 6.5rem;
+  padding-inline: 1rem;
+}
+
+.document-action:hover,
+.button-link:hover {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: white;
+}
+
+.teaching-list {
+  display: grid;
+  margin-top: 1.25rem;
+  border-top: 1px solid var(--line-strong);
+  gap: 0;
+}
+
+.teaching-item {
+  display: grid;
+  padding-block: 2rem;
+  border-bottom: 1px solid var(--line);
+  gap: 1.5rem 3rem;
+  grid-template-columns: minmax(14rem, 0.8fr) minmax(0, 1.2fr);
+}
+
+.teaching-item h2 {
+  margin: 0;
+  font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  font-size: clamp(1.65rem, 3vw, 2.5rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.course-term {
+  display: block;
+  margin-bottom: 0.65rem;
+  color: var(--accent);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.teaching-details p {
+  margin: 0 0 0.8rem;
+  color: #3e4653;
+}
+
+.button-link {
+  width: fit-content;
+  margin-top: 0.5rem;
+  padding-inline: 1rem;
+}
+
+.wiki-legend {
+  display: flex;
+  margin: 1.25rem 0 1.5rem;
+  padding: 0;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  list-style: none;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.legend-swatch {
+  width: 0.95rem;
+  height: 0.95rem;
+  border: 1px solid var(--line-strong);
+}
+
+.status-created { background: var(--gold); }
+.status-contributed { background: var(--green); }
+.status-exists { background: var(--gray-cell); }
+.status-missing { background: white; }
+
+.wiki-scroll {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--line-strong);
+  background: var(--paper);
+}
+
+.wiki-table {
+  width: 100%;
+  min-width: 69rem;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.wiki-table caption {
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  clip: rect(0 0 0 0);
+}
+
+.wiki-table th,
+.wiki-table td {
+  height: 5.4rem;
+  padding: 0.75rem;
+  border-right: 1px solid var(--line-strong);
+  border-bottom: 1px solid var(--line-strong);
+  font-size: 0.84rem;
+  line-height: 1.35;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.wiki-table tr:last-child td,
+.wiki-table tr:last-child th {
+  border-bottom: 0;
+}
+
+.wiki-table th:last-child,
+.wiki-table td:last-child {
+  border-right: 0;
+}
+
+.wiki-table thead th {
+  height: 4.2rem;
+  background: var(--foreground);
+  color: white;
+  font-size: 0.74rem;
+  letter-spacing: 0.02em;
+}
+
+.wiki-table .row-heading {
+  width: 10rem;
+  background: var(--paper-subtle);
+  font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: left;
+}
+
+.wiki-table a {
+  color: #0c286d;
+  font-weight: 700;
+}
+
+.empty-mark {
+  color: #88909c;
+}
+
+.language-grid {
+  display: grid;
+  margin-top: 1.25rem;
+  border-top: 1px solid var(--line-strong);
+  border-left: 1px solid var(--line);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.language-card {
+  display: flex;
+  min-height: 13rem;
+  padding: 1.5rem;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.language-card h2 {
+  margin: 0;
+  font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.language-card p {
+  margin: 0.65rem 0 1rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.language-card.unavailable {
+  background: transparent;
+}
+
+.archive-note {
+  max-width: 43rem;
+  margin-top: 2rem;
+  padding: 1rem 1.1rem;
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+  color: #263862;
+  font-size: 0.92rem;
+}
+
+.site-footer {
+  border-top: 1px solid var(--line-strong);
+}
+
+.site-footer-inner {
+  display: flex;
+  min-height: 6rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.footer-mark {
+  color: var(--foreground);
+  font-weight: 750;
+}
+
+@media (max-width: 860px) {
+  .header-inner,
+  .page,
+  .site-footer-inner {
+    width: min(100% - 2rem, 72rem);
+  }
+
+  .header-inner {
+    display: block;
+    padding-top: 0.75rem;
+  }
+
+  .site-nav {
+    margin-inline: -1rem;
+    overflow-x: auto;
+    padding-inline: 1rem;
+  }
+
+  .nav-list {
+    width: max-content;
+  }
+
+  .home-hero,
+  .about-grid,
+  .page-header,
+  .teaching-item {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-summary {
+    max-width: 35rem;
+    padding-top: 0;
+  }
+
+  .profile-figure {
+    width: min(100% - 1rem, 34rem);
+  }
+
+  .document-row {
+    grid-template-columns: 7rem minmax(0, 1fr);
+  }
+
+  .document-action {
+    width: fit-content;
+    grid-column: 2;
+  }
+
+  .language-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .home-title {
+    font-size: clamp(3.1rem, 17vw, 5rem);
+  }
+
+  .leisure-grid,
+  .language-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .document-row {
+    grid-template-columns: 1fr;
+  }
+
+  .document-action {
+    grid-column: 1;
+  }
+
+  .figure-caption,
+  .site-footer-inner {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
