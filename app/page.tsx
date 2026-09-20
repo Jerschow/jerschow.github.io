@@ -12,11 +12,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="about-grid" aria-labelledby="about-heading">
+      <section className="about-grid" aria-label="Biography">
         <div className="copy-column">
-          <p className="section-label" id="about-heading">
-            About me
-          </p>
           <p>
             I was born and educated in New York City. I began a bachelor&apos;s
             degree in mathematics and computer science at New York University,

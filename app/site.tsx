@@ -60,7 +60,6 @@ export function SiteFrame({
 }
 
 export function PageHeader({
-  index,
   title,
   lede,
 }: {
@@ -70,7 +69,6 @@ export function PageHeader({
 }) {
   return (
     <header className="page-header">
-      <p className="page-index">{index}</p>
       <div>
         <h1 className="page-title">{title}</h1>
         {lede ? <p className="page-lede">{lede}</p> : null}
